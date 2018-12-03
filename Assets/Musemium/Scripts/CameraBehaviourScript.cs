@@ -19,34 +19,35 @@ public class CameraBehaviourScript : MonoBehaviour {
 
 	}
 
+    /* Translate horizontally (h,v) */
+    void translate(float h, float v)
+    {
+        transform.Translate(
+            h * cameraMovementSpeed * Time.deltaTime,
+            v * cameraMovementSpeed * Time.deltaTime,
+            0
+        );
+    }
+
+    /* Zoom in/out h units*/
+    void zoom(float h)
+    {
+      transform.Translate(0, 0, h* Time.deltaTime);
+    }
 
 	void movement() {
 		// Gestión del movimiento de la cámara
-		float h = Input.GetAxis("Horizontal");
-		float v = Input.GetAxis("Vertical");
-		transform.Translate(
-			h * cameraMovementSpeed * Time.deltaTime,
-			v * cameraMovementSpeed * Time.deltaTime,
-			0
-		);
+		translate(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		
 
 		// Gestión del zoom
 		bool leftClicked = Input.GetButton("Fire1");
 		bool rightClicked = Input.GetButton("Fire2");
 
-		if (leftClicked) {
-			transform.Translate (
-				0,
-				0,
-				cameraZoomSpeed * Time.deltaTime
-			);
-		} else if (rightClicked) {
-			transform.Translate (
-				0,
-				0,
-				-cameraZoomSpeed * Time.deltaTime
-			);
-		}
+		if (leftClicked)
+            zoom(1);
+		else if (rightClicked)
+            zoom(-1);
 			
 		// Restricting position 
 		float xPos = mapa.transform.position.x;
