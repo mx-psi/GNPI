@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class selectableObject : MonoBehaviour {
 	private Transform transform;
 	private CapsuleCollider collider;
+	public string sceneToLoad;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,6 @@ public class selectableObject : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		Debug.Log ("Colision detectada, cambiando de escena");
-		SceneManager.LoadScene("testScene");
+		SceneManager.LoadScene(sceneToLoad);
 	}
 }
