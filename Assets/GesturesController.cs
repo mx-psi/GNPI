@@ -9,11 +9,14 @@ public class GesturesController : MonoBehaviour {
 
 	float distBase;
 	float distRel;
-	public Camera camera;
+	float suavizadoZoom = 5;
+	public Camera camera_;
+	Vector3 posCamara;
 
 	void Start ()
 	{
 		controller = new Controller();
+		posCamara = camera_.transform.position;
 	}
 
 	void Update ()
@@ -26,6 +29,7 @@ public class GesturesController : MonoBehaviour {
 			float angle1 = Vector3.Angle(Vector3.down, hands [0].PalmNormal.ToUnity());
 			float angle2 = Vector3.Angle(Vector3.down, hands [1].PalmNormal.ToUnity());
 
+
 			if ((angle1 < 45) && (angle2 < 45)) {
 				if (zoom == false) {
 					zoom = true;
@@ -33,9 +37,14 @@ public class GesturesController : MonoBehaviour {
 				} else {
 					distRel = hands [0].PalmPosition.DistanceTo (hands [1].PalmPosition) / distBase;
 					Debug.Log (distRel);
-					camera.transform.position /= (distRel-1)/5 + 1;
+					Vector3 camPos = posCamara;
+					camPos.z /= (distRel-1)/suavizadoZoom + 1;
+					camera_.transform.position = camPos;
 				}
 			} else {
+				if (zoom = true) {
+					posCamara = camera_.transform.position;
+				}
 				zoom = false;
 			}
 		}
