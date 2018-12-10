@@ -4,20 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class selectableObject : MonoBehaviour {
-	private Transform transform;
-	private CapsuleCollider collider;
+	private Transform transf;
 	public string sceneToLoad;
 
 	// Use this for initialization
 	void Start () {
-		transform = this.GetComponent<Transform> ();
-		collider = this.GetComponent<CapsuleCollider> ();
+		transf = this.GetComponent<Transform> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 rotationAngle = new Vector3 (1, 0, 1);
-		transform.Rotate (0, 45 * Time.deltaTime, 0, Space.World); // rotation in degrees per second
+		transf.Rotate (0, 45 * Time.deltaTime, 0, Space.World); // rotation in degrees per second
 	}
 
 
