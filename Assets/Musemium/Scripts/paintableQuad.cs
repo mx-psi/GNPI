@@ -16,7 +16,7 @@ public class paintableQuad : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision){
-		Debug.Log ("tocado");
-		m_Renderer.material.color = Color.blue;
+		//Debug.Log ("Painted");
+		m_Renderer.material.color = new Color(Random.value,Random.value,Random.value);
 	}
 }
