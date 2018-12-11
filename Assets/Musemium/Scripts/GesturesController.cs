@@ -25,9 +25,47 @@ public class GesturesController : MonoBehaviour {
 		Frame frame = controller.Frame();
 		string currentScene = SceneManager.GetActiveScene ().name;
 
+		// GESTOS CON UNA MANO
+
+		if (frame.Hands.Count == 1) {
+			Leap.HandList hands = frame.Hands;
+			Hand hand0 = hands [0];
+			if (currentScene == "mainScene") {
+
+				// MOVIMIENTO POR EL MAPA
+
+				float maxRadius = 50;
+				float threshold = 200;
+				float upThreshold = 300;
+				float downThreshold = 100;
+				float x = hand0.PalmPosition.ToUnity ().x;
+				float y = hand0.PalmPosition.ToUnity ().y;
+
+				if (hand0.SphereRadius < maxRadius) {
+					if ((x < -threshold) && (y > downThreshold) && (y < upThreshold)) {
+						Debug.Log ("Izq");
+						posCamara.x -= 0.1f;
+						camera_.transform.position = posCamara;
+					} else if ((x > threshold) && (y > downThreshold) && (y < upThreshold)) { 
+						Debug.Log ("Der");
+						posCamara.x += 0.1f;
+						camera_.transform.position = posCamara;
+					} else if ((y < downThreshold)) {
+						Debug.Log ("Ab");
+						posCamara.y -= 0.1f;
+						camera_.transform.position = posCamara;
+					} else if ((y > upThreshold)) {
+						Debug.Log ("Ar");
+						posCamara.y += 0.1f;
+						camera_.transform.position = posCamara;
+					}
+				}
+			}
+		}
+
 		// GESTOS CON DOS MANOS
 
-		if (frame.Hands.Count == 2) {
+		else if (frame.Hands.Count == 2) {
 			Leap.HandList hands = frame.Hands;
 			Hand hand0 = hands [0];
 			Hand hand1 = hands [1];
