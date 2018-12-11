@@ -16,7 +16,8 @@ public class bongoScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		//Debug.Log("Bonged");
-		audioData.Play (0);
+		if (collision.collider.name == "palm") {
+			audioData.Play (0);
+		}
 	}
 }
