@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class paintableQuad : MonoBehaviour {
 	Renderer m_Renderer;
+	private float startTimer;
+	private float waitTime;
 
 	// Use this for initialization
 	void Start () {
 		m_Renderer = GetComponent<Renderer>();
+		startTimer = Time.time;
+		waitTime = 3.0f;
 	}
 	
 	// Update is called once per frame
@@ -17,6 +21,7 @@ public class paintableQuad : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision){
 		//Debug.Log ("Painted");
-		m_Renderer.material.color = new Color(Random.value,Random.value,Random.value);
+		if (Time.time - startTimer > waitTime)
+			m_Renderer.material.color = Color.blue;
 	}
 }

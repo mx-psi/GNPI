@@ -6,13 +6,16 @@ using Leap;
 
 public class GesturesController : MonoBehaviour {
 	Controller controller;
-	bool zoom = false;
+	private bool zoom = false;
 
-	float distBase;
-	float distRel;
-	float suavizadoZoom = 5;
+	private float distBase;
+	private float distRel;
+	private float suavizadoZoom = 5;
+
 	public Camera camera_;
-	Vector3 posCamara;
+	private Vector3 posCamara;
+
+	private bool movingHand = false;
 
 	void Start ()
 	{
@@ -30,6 +33,7 @@ public class GesturesController : MonoBehaviour {
 		if (frame.Hands.Count == 1) {
 			Leap.HandList hands = frame.Hands;
 			Hand hand0 = hands [0];
+
 			if (currentScene == "mainScene") {
 
 				// MOVIMIENTO POR EL MAPA
@@ -38,27 +42,47 @@ public class GesturesController : MonoBehaviour {
 				float threshold = 200;
 				float upThreshold = 300;
 				float downThreshold = 100;
+				float step = 0.03f;
 				float x = hand0.PalmPosition.ToUnity ().x;
 				float y = hand0.PalmPosition.ToUnity ().y;
 
 				if (hand0.SphereRadius < maxRadius) {
 					if ((x < -threshold) && (y > downThreshold) && (y < upThreshold)) {
-						Debug.Log ("Izq");
-						posCamara.x -= 0.1f;
+						posCamara.x -= step;
 						camera_.transform.position = posCamara;
 					} else if ((x > threshold) && (y > downThreshold) && (y < upThreshold)) { 
-						Debug.Log ("Der");
-						posCamara.x += 0.1f;
+						posCamara.x += step;
 						camera_.transform.position = posCamara;
 					} else if ((y < downThreshold)) {
-						Debug.Log ("Ab");
-						posCamara.y -= 0.1f;
+						posCamara.y -= step;
 						camera_.transform.position = posCamara;
 					} else if ((y > upThreshold)) {
-						Debug.Log ("Ar");
-						posCamara.y += 0.1f;
+						posCamara.y += step;
 						camera_.transform.position = posCamara;
 					}
+				}
+			} 
+
+			else if (currentScene == "paintingScene") {
+				float minDotProd = 0.85f;
+				float velocityThreshold = 1000;
+
+				if (Mathf.Abs (Vector3.Dot (hand0.PalmNormal.ToUnity (), Vector3.left)) > minDotProd) {
+					if (hand0.PalmVelocity.x < -velocityThreshold) {
+						if (movingHand == false) {
+							Debug.Log ("Next");
+							movingHand = true;
+						}
+					} else if (hand0.PalmVelocity.x > velocityThreshold) {
+						if (movingHand == false) {
+							Debug.Log ("Previous");
+							movingHand = true;
+						}
+					} else {
+						movingHand = false;
+					}
+				} else {
+					movingHand = false;
 				}
 			}
 		}
