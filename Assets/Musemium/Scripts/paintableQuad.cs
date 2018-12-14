@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class paintableQuad : MonoBehaviour {
 	Renderer m_Renderer;
+	static int currentColor;
+	static private List<Color> colors;
 	private float startTimer;
 	private float waitTime;
 
@@ -12,6 +14,21 @@ public class paintableQuad : MonoBehaviour {
 		m_Renderer = GetComponent<Renderer>();
 		startTimer = Time.time;
 		waitTime = 3.0f;
+		colors = new List<Color> ();
+		colors.Add (Color.blue);
+		colors.Add (Color.red);
+		colors.Add (Color.yellow);
+		currentColor = 0;
+	}
+
+	// Change current color to next one
+	public static void nextColor(){
+		currentColor = (currentColor + 1) % colors.Count;
+	}
+
+	// Change current color to previous one
+	public static void previousColor(){
+		currentColor = (currentColor - 1) % colors.Count;
 	}
 	
 	// Update is called once per frame
@@ -22,6 +39,6 @@ public class paintableQuad : MonoBehaviour {
 	void OnCollisionEnter(Collision collision){
 		//Debug.Log ("Painted");
 		if (Time.time - startTimer > waitTime)
-			m_Renderer.material.color = Color.blue;
+			m_Renderer.material.color = colors[currentColor];
 	}
 }
