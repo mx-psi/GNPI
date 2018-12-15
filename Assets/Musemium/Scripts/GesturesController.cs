@@ -70,12 +70,12 @@ public class GesturesController : MonoBehaviour {
 				if (Mathf.Abs (Vector3.Dot (hand0.PalmNormal.ToUnity (), Vector3.left)) > minDotProd) {
 					if (hand0.PalmVelocity.x < -velocityThreshold) {
 						if (movingHand == false) {
-							paintableQuad.nextColor ();
+							ColorController.NextColor ();
 							movingHand = true;
 						}
 					} else if (hand0.PalmVelocity.x > velocityThreshold) {
 						if (movingHand == false) {
-							paintableQuad.previousColor ();
+							ColorController.PreviousColor ();
 							movingHand = true;
 						}
 					} else {

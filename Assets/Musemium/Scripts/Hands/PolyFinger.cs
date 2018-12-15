@@ -16,6 +16,8 @@ public class PolyFinger : FingerModel {
   const int TRIANGLE_INDICES_PER_QUAD = 6;
   const int VERTICES_PER_QUAD = 4;
 
+  protected Renderer m_Renderer;	
+
   /** The number of sides for finger tube. */
   public int sides = 4;
   /** Whether to smooth the mesh normals, providing a smoother appearance.*/
@@ -38,7 +40,7 @@ public class PolyFinger : FingerModel {
     InitCapsMesh();
     InitMesh();
     GetComponent<MeshFilter>().mesh = new Mesh();
-
+	m_Renderer = GetComponent<Renderer>();
     UpdateFinger();
   }
 
@@ -46,12 +48,15 @@ public class PolyFinger : FingerModel {
   public override void UpdateFinger() {
     UpdateMesh();
     UpdateCapMesh();
+	m_Renderer.material.color = ColorController.CurrentColor();
   }
 
   void OnDestroy() {
     Destroy(mesh_);
     Destroy(cap_mesh_);
     Destroy(GetComponent<MeshFilter>().mesh);
+	Destroy(m_Renderer);
+	Destroy (GetComponent<Renderer>());
   }
 
   void Update() {
