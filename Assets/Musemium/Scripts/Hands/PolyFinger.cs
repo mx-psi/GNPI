@@ -48,7 +48,9 @@ public class PolyFinger : FingerModel {
   public override void UpdateFinger() {
     UpdateMesh();
     UpdateCapMesh();
-	m_Renderer.material.color = ColorController.CurrentColor();
+	if (m_Renderer != null)
+		if (m_Renderer.material != null)
+			m_Renderer.material.color = ColorController.CurrentColor();
   }
 
   void OnDestroy() {

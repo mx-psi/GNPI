@@ -27,9 +27,8 @@ public class paintableQuad : MonoBehaviour {
 	void OnCollisionEnter(Collision collision){
 		//Debug.Log ("Painted");
 		if (Time.time - startTimer > waitTime)
-		if (m_Renderer.material.color != null)
-			m_Renderer.material.color = ColorController.CurrentColor ();
-		else 
-			Debug.Log ("Color = NULL");
+			if (m_Renderer != null)
+				if (m_Renderer.material != null)
+					m_Renderer.material.color = ColorController.CurrentColor ();
 	}
 }

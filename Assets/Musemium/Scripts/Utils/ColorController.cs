@@ -19,7 +19,7 @@ public class ColorController {
 	private static Color mainColor = Color.gray;
 
 	public ColorController (){
-
+		paintingColors = new List<Color>(colors_);
 	}
 
 	public static void NextColor(){
@@ -27,12 +27,13 @@ public class ColorController {
 	}
 
 	public static void PreviousColor(){
-		currentPaintingColor = (currentPaintingColor - 1) % paintingColors.Count;
+		currentPaintingColor = (currentPaintingColor + paintingColors.Count - 1) % paintingColors.Count;
 	}
 
 	public static Color CurrentColor(){
 		Color currentColor;
 		if (SceneManager.GetActiveScene ().name == "paintingScene") {
+			
 			currentColor = paintingColors [currentPaintingColor];
 		}
 		else
