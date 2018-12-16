@@ -138,9 +138,15 @@ Los atributos de la clase son:
 - `suavizadoZoom` parámetro para la función de suavizado del zoom y
 - `camera_` y `posCamara` que son la cámara y su posición en la escena actual.
 
-El único método relevante en esta clase es el método `Update` que gestiona la detección de los gestos. La detección de gestos se realiza en función de la escena.
+La clase tiene los siguientes métodos para realizar las acciones asociadas a cada gesto:
 
-TODO describir método.
+- `MapNavigation` para los gestos de desplazarse por el mapa,
+- `Next` para mostrar el siguiente modelo o cambiar al siguiente color, según la escena,
+- `Previous` para mostrar el anterior modelo o cambiar al anterior color, según la escena,
+- `Zoom` para cambiar la posición de la cámara al reconocer el gesto del zoom,
+- `Exit` para salir a la escena principal desde cualquiera de las otras escenas.
+
+El método que se encarga de reconocer cada gesto es `Update`. Este método se llama en cada frame y verifica si se cumplen las condiciones que activan cada uno de los gestos usando datos como `isExtended` de la librería de `Leap` que informa de si un dedo concreto está extendido o `StabilizedPalmPosition`, de la misma librería, que indica la posición de la palma de la mano corrigiéndola para darle estabilidad.
 
 ### `selectableObject`
 
@@ -191,7 +197,7 @@ El mapamundi se ha obtenido de [ClipArtBest](http://www.clipartbest.com/clipart-
 
 El  modelo del cubo de basura se ha obtenido de [Free3D.com](https://free3d.com/3d-model/trash-can-v3--841062.html).
 
-Las figuras 3D de obras de arte se han obtenido de [Scan The World](https://www.myminifactory.com/es/scantheworld/). 
+Las figuras 3D de obras de arte se han obtenido de [Scan The World](https://www.myminifactory.com/es/scantheworld/).
 Las hemos tratado utilizando Blender para reducir el número de vértices.
 
 El resto de iconos, interfaces, logos y animaciones se han producido por el propio equipo
