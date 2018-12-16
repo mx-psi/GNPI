@@ -63,20 +63,28 @@ public class GesturesController : MonoBehaviour {
 				}
 			} 
 
-			else if (currentScene == "paintingScene") {
+			else if ((currentScene == "paintingScene") || (currentScene == "sculptureScene")){
 				float minDotProd = 0.85f;
 				float velocityThreshold = 1000;
 
 				if (Mathf.Abs (Vector3.Dot (hand0.PalmNormal.ToUnity (), Vector3.left)) > minDotProd) {
 					if (hand0.PalmVelocity.x < -velocityThreshold) {
 						if (movingHand == false) {
-							ColorController.NextColor ();
 							movingHand = true;
+							if (currentScene == "paintingScene") {
+								ColorController.NextColor ();
+							} else {
+								VisibilityController.NextModel ();
+							}
 						}
 					} else if (hand0.PalmVelocity.x > velocityThreshold) {
 						if (movingHand == false) {
-							ColorController.PreviousColor ();
 							movingHand = true;
+							if (currentScene == "paintingScene") {
+								ColorController.PreviousColor ();
+							} else {
+								VisibilityController.PreviousModel ();
+							}
 						}
 					} else {
 						movingHand = false;
