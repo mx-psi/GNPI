@@ -1,5 +1,5 @@
 ---
-title: Memoria técnica de la práctica 3 
+title: Memoria técnica de la práctica 3
 date: Nuevos Paradigmas de Interacción
 author:
 - Pablo Baeyens Fernández
@@ -34,8 +34,8 @@ La carpeta `Assets` tiene las siguientes carpetas, descritas en orden alfabétic
    - `Scenes` contiene las escenas (ver [Escenas]),
    - `Scripts` contiene los scripts (ver [Scripts]) y
    - `Sounds` contiene los sonidos de la escena de bongos (ver [Sonidos])
-   
-   
+
+
 # Escenas
 
 El proyecto consta de 4 escenas:
@@ -43,14 +43,14 @@ El proyecto consta de 4 escenas:
 `mainScene.unity`
 : La escena principal. Esta escena muestra el mapamundi, la ayuda y permite acceder al resto de escenas.
   Su uso se describe en la sección "El mapamundi" de la memoria descriptiva.
-  
+
 `musicScene.unity`
 : Escena musical. Esta escena muestra dos bongos y permite tocarlos con las palmas de las manos.
   Su uso se describe en la sección "Música" de la memoria descriptiva.
-  
+
 `paintingScene.unity`
-: Escena de lienzo. Esta escena muestra un lienzo y un cubo de basura. 
-  Permite al usuario pintar utilizando sus manos. Su uso se describe en la sección "Creación de cuadros" de la 
+: Escena de lienzo. Esta escena muestra un lienzo y un cubo de basura.
+  Permite al usuario pintar utilizando sus manos. Su uso se describe en la sección "Creación de cuadros" de la
   memoria descriptiva.
 
 `sculptureScene.unity`
@@ -85,7 +85,6 @@ Mapa
 : Cápsulas que nos permiten acceder al resto de escenas.
   Cada escena tiene un *Capsule Collider* que nos permite interactuar con las mismas.
   Además, el componente *Selectable Object (Script)* tiene asociada la escena a cargar y la animación asociada (ver documentación en [Scripts]).
-  
 UI
 : Tiene los componentes relativos a la interfaz de usuario, con los que no se puede interactuar.
 
@@ -169,9 +168,21 @@ Tiene un único método relevante, `OnCollisionEnter`, que reproduce el audio si
 
 ## Modelos 3D y texturas
 
-El mapamundi se ha obtenido de TODO
+El mapamundi se ha obtenido de [ClipArtBest](http://www.clipartbest.com/clipart-niEnp5BiA)
+
+El  modelo del cubo de basura se ha obtenido de [Free3D.com](https://free3d.com/3d-model/trash-can-v3--841062.html)
+
+El resto de iconos, interfaces, logos y animaciones se han producido por el propio equipo
+
+
 
 ## Sonidos
+
+Los sonidos de los bongos se han obtenido del repositorio:
+
+<https://github.com/Externalizable/bongo.cat>
+
+
 ## Recursos de Leap
 
 TODO

@@ -45,8 +45,9 @@ public class selectableObject : MonoBehaviour {
      * If a collision is mantained for more than loadingTime, load scene.
      */
 	private void OnTriggerStay(Collider other) {
-		if(Time.time - startTimer > loadingTime)
-			SceneManager.LoadScene(sceneToLoad);
+		if (Time.time - startTimer > loadingTime && sceneToLoad.Length != 0) {
+			SceneManager.LoadScene (sceneToLoad);
+		}
 	}
 
     /*

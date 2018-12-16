@@ -5,7 +5,7 @@ using UnityEngine;
 public class VisibilityController : MonoBehaviour {
 	public int index;
 	private static int currentModel = 0;
-	private static int numOfModels = 3;
+	private static int numOfModels = 4;
 	private Renderer m_Renderer;
 	private Vector3 initialPosition;
 	private bool justBecameVisible = false;
@@ -14,7 +14,6 @@ public class VisibilityController : MonoBehaviour {
 	{
 		m_Renderer = GetComponent<MeshRenderer>();
 		initialPosition = this.transform.parent.position;
-		Debug.Log (initialPosition);
 		Update ();
 	}
 
