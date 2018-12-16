@@ -1,5 +1,5 @@
 ---
-title: Memoria descriptiva de la práctica 3 
+title: Memoria descriptiva de la práctica 3
 date: Nuevos Paradigmas de Interacción
 author:
 - Pablo Baeyens Fernández
@@ -14,13 +14,13 @@ colorlinks: true
 toc: false
 ---
 
-# Introducción e idea de museo 
+# Introducción e idea de museo
 
 **Musemium**
 
-Musemium 2 es un museo de arte interactivo virtual que nos permite interactuar con diversas formas de arte de todo el mundo: desde obras clásicas como la Mona Lisa o El Grito hasta esculturas, música... 
+Musemium 2 es un museo de arte interactivo virtual que nos permite interactuar con diversas formas de arte de todo el mundo: desde obras clásicas como la Mona Lisa o El Grito hasta esculturas, música...
 
-Aún si viajamos por todo el mundo nuestra experiencia del arte está limitada por los museos tradicionales, en los que no podemos tocar u observar las esculturas y objetos que se encuentran en estos. A través de nuestras manos podremos, con la ayuda de Leap 
+Aún si viajamos por todo el mundo nuestra experiencia del arte está limitada por los museos tradicionales, en los que no podemos tocar u observar las esculturas y objetos que se encuentran en estos. A través de nuestras manos podremos, con la ayuda de Leap
 
 - Viajar por un mapamundi en el que explorar las distintas corrientes artísticas de cada región,
 - coger y observar esculturas de distintos movimientos artísticos, manipularlas y rotarlas,
@@ -41,8 +41,8 @@ El medio de interacción principal con la aplicación es un mapa del mundo que p
 
 Los gestos que podemos utilizar para movernos por el mapa son:
 
-- [TODO no sé cuál es] para mover el mapa en el plano horizontal,
-- [TODO no sé cuál es] para ampliar y reducir el mapa y
+- Acercar un puño cerrado a los límites de la pantalla para moverse en el mapa hacia el norte, sur, este u oeste,
+- Extender y acercar las manos con los dedos extendidos y las palmas mirando hacia abajo para ampliar y reducir el mapa y
 - mantener la mano en la región cercana a una cápsula para cargar la experiencia correspondiente a ese objeto.
 
 Para indicar al usuario cómo interaccionar con las cápsulas se muestra una animación de carga cuando el usuario mantiene la mano en la región de la cápsula. Si el usuario la mantiene durante unos segundos puede acceder a dicha escena.
@@ -58,7 +58,8 @@ De esta forma podemos representar las distintas formas de arte en el mapa y perm
 
 Musemium 2 consta de un modo de interacción con obras de arte de distintas corrientes en las que podemos manipular sus figuras en un recinto cerrado. Podremos coger, manipular y cambiar de figura mediante el uso de gestos naturales como:
 
-- [TODO no sé cuál es] para cambiar la figura y
+- Mover de derecha a izquierda la mano extendida con la palma mirando hacia la izquiera o la derecha para visualizar la siguiente figura,
+- mover de izquierda a derecha la mano extendida con la palma mirando hacia la izquiera o la derecha para visualizar la anterior figura,
 - coger la figura con las manos para observarla.
 
 Para facilitar la interacción con las figuras hacemos que, inspirados por los ejemplos de Leap, al cerrar la mano esta actúe como un imán que atraiga al objeto para que sea más fácil de manipular.
@@ -71,12 +72,13 @@ Otra de las experiencias disponibles es el uso de nuestras manos para la creaci�
 En esta experiencia el usuario podrá utilizar su mano para apuntar a la zona que desea pintar y cambiar el tipo de color que esté utilizando en ese momento. En concreto los gestos que pueden utilizarse son:
 
 - Colorear una zona del lienzo con el color de la mano actual moviendo la mano sobre la superficie,
-- [TODO no sé cuál es] para cambiar el color de la herramienta y
+- mover de derecha a izquierda la mano extendida con la palma mirando hacia la izquiera o la derecha para cambiar al siguiente color de la herramienta,
+- mover de izquierda a derecha la mano extendida con la palma mirando hacia la izquiera o la derecha para cambiar al anterior color de la herramienta,
 - Mantener su mano en el cubo de basura para limpiar el lienzo.
 
 Una animación inicial nos indica cómo interactuar con el lienzo.
 Además, el color de la mano que aparece en pantalla indica el color con el cual se está pintando en ese momento.
-Los colores disponibles son TODO.
+Los colores disponibles son azul, verde, amarillo, rojo, magenta, negro y blanco.
 
 ![Lienzo en proceso de borrado](basura.png)
 
