@@ -35,7 +35,7 @@ Las siguientes secciones describen con más detalle cada una de las experiencias
 
 # El mapamundi
 
-![TODO Imagen del mapamundi]()
+![Mapamundi junto con cápsulas y código de colores.](mapamundi.png)
 
 El medio de interacción principal con la aplicación es un mapa del mundo que podemos ampliar y mover mediante el uso de gestos con nuestras manos. Si ampliamos lo suficiente el mapa podremos visualizar distintos objetos (cápsulas) con los que interactuar.
 
@@ -47,14 +47,14 @@ Los gestos que podemos utilizar para movernos por el mapa son:
 
 Para indicar al usuario cómo interaccionar con las cápsulas se muestra una animación de carga cuando el usuario mantiene la mano en la región de la cápsula. Si el usuario la mantiene durante unos segundos puede acceder a dicha escena.
 
-Además, la parte inferior de la pantalla muestra mediante un código de colores una descripción pictórica de la actividad correspondiente a cada cápsula para ayudar al usuario.
+Además, la parte inferior de la pantalla muestra mediante un código de colores una descripción pictórica de la actividad correspondiente a cada cápsula como ayuda.
 
 De esta forma podemos representar las distintas formas de arte en el mapa y permitir al usuario la exploración de las mismas en el orden que prefiera. Las ayudas visuales nos permiten que esta exploración sea natural e intuitiva.
 
 
 # Interacción con las obras de arte
 
-![TODO imagen de obra de arte]()
+![Visor de obra de arte. Muestra a El David de Miguel Ángel y una mano que interactúa con el mismo.](visor.png)
 
 Musemium 2 consta de un modo de interacción con obras de arte de distintas corrientes en las que podemos manipular sus figuras en un recinto cerrado. Podremos coger, manipular y cambiar de figura mediante el uso de gestos naturales como:
 
@@ -65,22 +65,28 @@ Para facilitar la interacción con las figuras hacemos que, inspirados por los e
 
 # Creación de cuadros
 
-![TODO imagen de cuadro]()
+![Experiencia de creación de cuadros. Muestra un lienzo, la mano del color de pintado actual y la opción de borrado](pintura.png)
 
 Otra de las experiencias disponibles es el uso de nuestras manos para la creación de cuadros de arte pixelado.
 En esta experiencia el usuario podrá utilizar su mano para apuntar a la zona que desea pintar y cambiar el tipo de color que esté utilizando en ese momento. En concreto los gestos que pueden utilizarse son:
 
-- Colorear una zona del lienzo con el color de la mano actual moviendo la mano sobre la superficie y
-- [TODO no sé cuál es] para cambiar el color de la herramienta
+- Colorear una zona del lienzo con el color de la mano actual moviendo la mano sobre la superficie,
+- [TODO no sé cuál es] para cambiar el color de la herramienta y
+- Mantener su mano en el cubo de basura para limpiar el lienzo.
 
 Una animación inicial nos indica cómo interactuar con el lienzo.
 Además, el color de la mano que aparece en pantalla indica el color con el cual se está pintando en ese momento.
+Los colores disponibles son TODO.
 
-[TODO describir cuál es la paleta de colores etc]
+![Lienzo en proceso de borrado](basura.png)
+
+Para limpiar el lienzo podemos mantener la mano sobre el cubo de basura.
+Una animación nos indica que se borrará el lienzo y se reinicia la experiencia.
+También podemos borrar cuando nuestra mano es de color blanco.
 
 # Música
 
-![TODO imagen de los bongos]()
+![Escena de música.](bongos.png)
 
 La última experiencia a la que podemos acceder por medio de Musemium 2 nos permite tocar música utilizando nuestras propias manos.
 
