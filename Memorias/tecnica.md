@@ -19,7 +19,7 @@ toc: true
 # Estructura del proyecto
 
 Musemium 2 está implementado como un proyecto para Unity apoyándose de las librerías de Leap Motion Desktop v2.
-Hemos implementado el proyecto utilizando la versión TODO de Unity.
+Hemos implementado el proyecto utilizando la versión 5.6.6f2 Personal de Unity.
 
 En esta sección describimos la estructura en carpetas del proyecto.
 Describimos sólo la carpeta `Assets` y se ignoran los ficheros `.meta`, ya que el resto (tanto estos ficheros como la carpeta `ProyectSettings`) corresponden a configuraciones de Unity y no a código o recursos editados por nosotros.
@@ -69,7 +69,7 @@ Todas las escenas contienen los siguientes objetos (con las propiedades por defe
 `HandControllerSandbox`
 : Consta de:
 
-- un componente *Hand Controller (Script)* que controla la mano. En todas las escenas este componente tiene un script asociado del plugin de Leap [TODO asegurarse que es del plugin] que controla el movimiento básico de la mano y su reconocimiento.
+- un componente *Hand Controller (Script)* que controla la mano. En todas las escenas este componente tiene un script asociado del plugin de Leap que controla el movimiento básico de la mano y su reconocimiento.
 - Un componente *Gestures Controller (Script)* descrito en el script `GesturesController`.
 
 Además, omitimos la descripción de los renderers o colliders cuando no sean necesarios para la explicación técnica del funcionamiento de la escena.
@@ -104,16 +104,22 @@ La escena de música consta de los objetos principales además de los siguientes
 
 La escena de creación de lienzos consta de los objetos principales además de los siguientes objetos:
 
-
+- `MainCanvas` y `EventSystem` para las animaciones. Su script asociado es `canvasTimerDisable`,
+- `Trash can` y `Non alpha affected canvas` para el cubo de basura. Su script asociado es `selectableObject`,
+- `PaintingScene Controller` y los `Paintable Quad` generados para el lienzo dinámicamente por el script `gridScript`.
 
 ## `sculptureScene`
 
+La escena de visión de escultura consta de los objetos principales además de los siguientes objetos:
+
+- `venus`, `pensador`, `urinal` y `david` son los objetos visualizables. Tienen asociados un `RigidBody` para físicas y un script `GrabbableObject` de los plugin de Leap para la interacción con Leap
+- `Base & bounding box` es la caja en la que se encuentran los objetos. El suelo es visible pero las paredes y el techo no.
+  Constan de collider para evitar que el objeto se salga fuera de la región visible.
 
 # Scripts
 
-## Diagrama de clases
-
-Todas las clases que hemos implementado heredan de `MonoBehaviour`.
+Todas las clases que hemos implementado heredan de `MonoBehaviour`,
+por lo que consideramos que no es necesario hacer un diagrama de clases.
 
 ## Documentación de clases
 
@@ -138,7 +144,7 @@ TODO describir método.
 
 ### `selectableObject`
 
-Script asociado a las cápsulas seleccionables en la escena principal.
+Este script está asociado a las cápsulas seleccionables en la escena principal.
 
 Los atributos de la clase son:
 
@@ -158,11 +164,24 @@ Los métodos de la clase son:
 
 ## `bongoScript`
 
-Este script gestiona la detección del tocad o de los bongos.
+Este script gestiona la detección del tocado de los bongos.
 
 Tiene un único atributo `audioData` correspondiente al audio a reproducir con la colisión de los bongos.
 
 Tiene un único método relevante, `OnCollisionEnter`, que reproduce el audio si se detecta una colisión con una palma.
+
+## `gridScript`
+
+Este script genera dinámicamente el lienzo en el que se pinta a partir de cuadrados pintables prefabricados.
+
+El único método relevante es `createGrid`, que crea el lienzo instanciando cuadrados pintables en las posiciones adecuadas.
+
+## `canvasTimerDisableScript`
+
+Este script desactiva una animación.
+
+El método `Update` aumenta progresivamente la transparencia del objeto.
+
 
 # Recursos externos utilizados
 
@@ -185,7 +204,9 @@ Los sonidos de los bongos se han obtenido del repositorio:
 
 ## Recursos de Leap
 
-TODO
+Los recursos de Leap se han obtenido del siguiente repositorio de Github:
+
+<https://github.com/leapmotion/LeapMotionCoreAssets>
 
 ## Otros recursos
 

@@ -19,7 +19,9 @@ public class gridScript : MonoBehaviour {
 		
 	}
 
-
+    /*
+     * Create grid of prefabs of number of Columns by number of rows and given width
+     */
 	void createGrid() {
 		float columnProportion = gridWidth / numberOfColumns; // Each quad should have this amount of space
 		float rowProportion = gridWidth / numberOfRows;

@@ -15,6 +15,9 @@ public class canvasTimerDisableScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+    /*
+     * Fades out object
+     */
 	void Update () {
 		if (Time.time - startTimer > timer) {
 			this.GetComponent<CanvasGroup> ().alpha = Mathf.SmoothDamp(this.GetComponent<CanvasGroup>().alpha, 0f,ref fadeOutSpeed,1f);
