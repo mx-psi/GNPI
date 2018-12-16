@@ -35,8 +35,76 @@ La carpeta `Assets` tiene las siguientes carpetas, descritas en orden alfabétic
    - `Scripts` contiene los scripts (ver [Scripts]) y
    - `Sounds` contiene los sonidos de la escena de bongos (ver [Sonidos])
    
-
+   
 # Escenas
+
+El proyecto consta de 4 escenas:
+
+`mainScene.unity`
+: La escena principal. Esta escena muestra el mapamundi, la ayuda y permite acceder al resto de escenas.
+  Su uso se describe en la sección "El mapamundi" de la memoria descriptiva.
+  
+`musicScene.unity`
+: Escena musical. Esta escena muestra dos bongos y permite tocarlos con las palmas de las manos.
+  Su uso se describe en la sección "Música" de la memoria descriptiva.
+  
+`paintingScene.unity`
+: Escena de lienzo. Esta escena muestra un lienzo y un cubo de basura. 
+  Permite al usuario pintar utilizando sus manos. Su uso se describe en la sección "Creación de cuadros" de la 
+  memoria descriptiva.
+
+`sculptureScene.unity`
+: Escena de visualización de obras de arte. Esta escena muestra una obra de arte y permite interactuar con ella.
+  Su uso se describe en la sección "Interacción con obras de arte" de la memoria descriptiva.
+
+A continuación se describe la implementación de cada escena.
+Todas las escenas contienen los siguientes objetos (con las propiedades por defecto salvo que se indique lo contrario):
+
+`MainCamera`
+: Cámara por defecto. En algunas escenas tiene un script que maneja el comportamiento de parte de la escena.
+
+`DirectionalLight`
+: Luz por defecto
+
+`HandControllerSandbox`
+: Consta de:
+
+- un componente *Hand Controller (Script)* que controla la mano. En todas las escenas este componente tiene un script asociado del plugin de Leap [TODO asegurarse que es del plugin] que controla el movimiento básico de la mano y su reconocimiento.
+- Un componente *Gestures Controller (Script)* descrito en el script TODO.
+
+Además, omitimos la descripción de los renderers o colliders cuando no sean necesarios para la explicación técnica del funcionamiento de la escena.
+
+## `mainScene`
+
+La escena principal consta de los objetos por defecto así como lo siguientes elementos:
+
+Mapa
+: El mapamundi, con un material *Mapamundi* que nos muestra una versión simplificada del mapa del mundo.
+
+*Selectable Items*
+: Cápsulas que nos permiten acceder al resto de escenas.
+  Cada escena tiene un *Capsule Collider* que nos permite interactuar con las mismas.
+  Además, el componente *Selectable Object (Script)* tiene asocada la escena a cargar y la animación asociada
+  
+UI
+: Tiene los componentes relativos a la interfaz de usuario, con los que no se puede interactuar.
+
+## `musicScene`
+
+La escena de música consta de los objetos principales además de los siguientes dos objetos:
+
+`Bongo left` y `bongo right`
+: Estos objetos tienen asociados:
+
+- Un *Rigid body* y un *Capsule collider* para calcular las colisiones y poder tocar los bongos,
+- Un *audioSource* para indicar el sonido a reproducir cuando se toque el bongo,
+- Un script *bongoScript* que gestiona cuándo se considera que se ha tocado el bongo
+
+
+## `paintingScene`
+
+## `sculptureScene`
+
 
 # Scripts
 
