@@ -33,8 +33,9 @@ public class selectableObject : MonoBehaviour {
 	}
 
 	private void OnTriggerStay(Collider other) {
-		if(Time.time - startTimer > loadingTime)
-			SceneManager.LoadScene(sceneToLoad);
+		if (Time.time - startTimer > loadingTime && sceneToLoad.Length != 0) {
+			SceneManager.LoadScene (sceneToLoad);
+		}
 	}
 
 	private void OnTriggerExit(Collider other) {
