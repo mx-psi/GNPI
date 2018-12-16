@@ -189,7 +189,10 @@ El método `Update` aumenta progresivamente la transparencia del objeto.
 
 El mapamundi se ha obtenido de [ClipArtBest](http://www.clipartbest.com/clipart-niEnp5BiA)
 
-El  modelo del cubo de basura se ha obtenido de [Free3D.com](https://free3d.com/3d-model/trash-can-v3--841062.html)
+El  modelo del cubo de basura se ha obtenido de [Free3D.com](https://free3d.com/3d-model/trash-can-v3--841062.html).
+
+Las figuras 3D de obras de arte se han obtenido de [Scan The World](https://www.myminifactory.com/es/scantheworld/). 
+Las hemos tratado utilizando Blender para reducir el número de vértices.
 
 El resto de iconos, interfaces, logos y animaciones se han producido por el propio equipo
 
