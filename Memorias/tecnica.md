@@ -57,6 +57,10 @@ El proyecto consta de 4 escenas:
 : Escena de visualización de obras de arte. Esta escena muestra una obra de arte y permite interactuar con ella.
   Su uso se describe en la sección "Interacción con obras de arte" de la memoria descriptiva.
 
+Puede verse a continuación un diagrama de navegación de las escena.
+
+![Diagrama de navegación de las escenas.](escenas.png)
+
 A continuación se describe la implementación de cada escena.
 Todas las escenas contienen los siguientes objetos (con las propiedades por defecto salvo que se indique lo contrario):
 
