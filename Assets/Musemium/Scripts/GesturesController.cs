@@ -4,29 +4,36 @@ using System.Collections;
 using System.Collections.Generic;
 using Leap;
 
+/*
+ * Leap gestures management
+ */
 public class GesturesController : MonoBehaviour {
-	Controller controller;
-	private bool zoom = false;
+	Controller controller; // Main controller
+	private bool zoom = false; // whether we are zooming right now
 
 	private float distBase;
 	private float distRel;
-	private float suavizadoZoom = 5;
+	private float suavizadoZoom = 5; // zoom smooth parameter
 
-	public Camera camera_;
-	private Vector3 posCamara;
+	public Camera camera_; //camera
+	private Vector3 posCamara; //camera position
 
-	private bool movingHand = false;
+	private bool movingHand = false; // whether hand is moving
 
-	void Start ()
-	{
+    /*
+     * Initialize controller and camera position
+     */
+	void Start() {
 		controller = new Controller();
 		posCamara = camera_.transform.position;
 	}
 
-	void Update ()
-	{
-		Frame frame = controller.Frame();
-		string currentScene = SceneManager.GetActiveScene ().name;
+    /*
+     * Check for gestures on each frame
+     */
+	void Update (){
+		Frame frame = controller.Frame(); //Frame with hands
+		string currentScene = SceneManager.GetActiveScene ().name; // Current scene name
 
 		// GESTOS CON UNA MANO
 
@@ -34,6 +41,7 @@ public class GesturesController : MonoBehaviour {
 			Leap.HandList hands = frame.Hands;
 			Hand hand0 = hands [0];
 
+            // Main scene gestures
 			if (currentScene == "mainScene") {
 
 				// MOVIMIENTO POR EL MAPA
@@ -62,27 +70,28 @@ public class GesturesController : MonoBehaviour {
 					}
 				}
 			} 
-
+            // Painting and sculpture gestures
 			else if ((currentScene == "paintingScene") || (currentScene == "sculptureScene")){
 				float minDotProd = 0.85f;
 				float velocityThreshold = 1000;
 
+                // If hand is tilted
 				if (Mathf.Abs (Vector3.Dot (hand0.PalmNormal.ToUnity (), Vector3.left)) > minDotProd) {
-					if (hand0.PalmVelocity.x < -velocityThreshold) {
+					if (hand0.PalmVelocity.x < -velocityThreshold) { // if moving left
 						if (movingHand == false) {
 							movingHand = true;
-							if (currentScene == "paintingScene") {
+							if (currentScene == "paintingScene") { // update color
 								ColorController.NextColor ();
-							} else {
+							} else { // change model
 								VisibilityController.NextModel ();
 							}
 						}
-					} else if (hand0.PalmVelocity.x > velocityThreshold) {
+					} else if (hand0.PalmVelocity.x > velocityThreshold) { // if moving right
 						if (movingHand == false) {
 							movingHand = true;
-							if (currentScene == "paintingScene") {
+							if (currentScene == "paintingScene") { //update color
 								ColorController.PreviousColor ();
-							} else {
+							} else { // change model
 								VisibilityController.PreviousModel ();
 							}
 						}
@@ -96,7 +105,6 @@ public class GesturesController : MonoBehaviour {
 		}
 
 		// GESTOS CON DOS MANOS
-
 		else if (frame.Hands.Count == 2) {
 			Leap.HandList hands = frame.Hands;
 			Hand hand0 = hands [0];
@@ -104,8 +112,14 @@ public class GesturesController : MonoBehaviour {
 
 			Finger index0 = hand0.Fingers [1];
 			Finger index1 = hand1.Fingers [1];
+            
+            // number of extended fingers
 			int numExtended = hand0.Fingers.Extended ().Count + hand0.Fingers.Extended ().Count;
+
+            // number of fingers
 			int numOfFingers = hand0.Fingers.Count + hand1.Fingers.Count;
+
+            // are all fingers extended?
 			bool allExtended = numOfFingers == numExtended;
 
 			if (currentScene == "mainScene") {
@@ -115,17 +129,18 @@ public class GesturesController : MonoBehaviour {
 				float angle1 = Vector3.Angle (Vector3.down, hand0.PalmNormal.ToUnity ());
 				float angle2 = Vector3.Angle (Vector3.down, hand1.PalmNormal.ToUnity ());
 
+                // If both hands are extended facing down
 				if ((angle1 < 45) && (angle2 < 45) && allExtended) {
 					if (zoom == false) {
-						zoom = true;
+						zoom = true; // Start zooming
 						distBase = hand0.StabilizedPalmPosition.DistanceTo (hand1.StabilizedPalmPosition);
-					} else {
+					} else { // Zoom in
 						distRel = hand0.StabilizedPalmPosition.DistanceTo (hand1.StabilizedPalmPosition) / distBase;
 						Vector3 camPos = posCamara;
 						camPos.z /= (distRel - 1) / suavizadoZoom + 1;
 						camera_.transform.position = camPos;
 					}
-				} else {
+				} else { // Stop zooming
 					if (zoom == true) {
 						posCamara = camera_.transform.position;
 					}

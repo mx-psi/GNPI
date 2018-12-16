@@ -70,7 +70,7 @@ Todas las escenas contienen los siguientes objetos (con las propiedades por defe
 : Consta de:
 
 - un componente *Hand Controller (Script)* que controla la mano. En todas las escenas este componente tiene un script asociado del plugin de Leap [TODO asegurarse que es del plugin] que controla el movimiento básico de la mano y su reconocimiento.
-- Un componente *Gestures Controller (Script)* descrito en el script TODO.
+- Un componente *Gestures Controller (Script)* descrito en el script `GesturesController`.
 
 Además, omitimos la descripción de los renderers o colliders cuando no sean necesarios para la explicación técnica del funcionamiento de la escena.
 
@@ -79,12 +79,12 @@ Además, omitimos la descripción de los renderers o colliders cuando no sean ne
 La escena principal consta de los objetos por defecto así como lo siguientes elementos:
 
 Mapa
-: El mapamundi, con un material *Mapamundi* que nos muestra una versión simplificada del mapa del mundo.
+: El mapamundi, con el material asociado `Mapamundi` que nos muestra una versión simplificada del mapa del mundo
 
 *Selectable Items*
 : Cápsulas que nos permiten acceder al resto de escenas.
   Cada escena tiene un *Capsule Collider* que nos permite interactuar con las mismas.
-  Además, el componente *Selectable Object (Script)* tiene asocada la escena a cargar y la animación asociada
+  Además, el componente *Selectable Object (Script)* tiene asociada la escena a cargar y la animación asociada (ver documentación en [Scripts]).
   
 UI
 : Tiene los componentes relativos a la interfaz de usuario, con los que no se puede interactuar.
@@ -98,10 +98,14 @@ La escena de música consta de los objetos principales además de los siguientes
 
 - Un *Rigid body* y un *Capsule collider* para calcular las colisiones y poder tocar los bongos,
 - Un *audioSource* para indicar el sonido a reproducir cuando se toque el bongo,
-- Un script *bongoScript* que gestiona cuándo se considera que se ha tocado el bongo
+- Un script *bongoScript* que gestiona cuándo se considera que se ha tocado el bongo (ver sección scripts para documentación),
 
 
 ## `paintingScene`
+
+La escena de creación de lienzos consta de los objetos principales además de los siguientes objetos:
+
+
 
 ## `sculptureScene`
 
@@ -110,7 +114,56 @@ La escena de música consta de los objetos principales además de los siguientes
 
 ## Diagrama de clases
 
+Todas las clases que hemos implementado heredan de `MonoBehaviour`.
+
 ## Documentación de clases
+
+La clase `MonoBehaviour` requiere de la implementación del método de inicialización `Start` y del método `Update`.
+Si en algún caso alguno de estos métodos no tiene una función especial más allá de la inicialización o están vacíos se omiten de la documentación de ese script.
+
+### `GesturesController`
+
+Script asociado a la detección de gestos de la mano.
+
+Los atributos de la clase son:
+
+- `controller` El controlador asociado a Leap,
+- `zoom` y `movingHands`, que indican el modo actual (si se está haciendo zoom o haciendo el gesto de mover la mano),
+- `distBase` y `distRel`
+- `suavizadoZoom` parámetro para la función de suavizado del zoom y
+- `camera_` y `posCamara` que son la cámara y su posición en la escena actual.
+
+El único método relevante en esta clase es el método `Update` que gestiona la detección de los gestos. La detección de gestos se realiza en función de la escena.
+
+TODO describir método.
+
+### `selectableObject`
+
+Script asociado a las cápsulas seleccionables en la escena principal.
+
+Los atributos de la clase son:
+
+- `transf` es la `Transformation` actual de la cápsula,
+- `sceneToLoad` es el nombre de la escena a cargar,
+- `anim` es la animación asociada a la carga,
+- `startTimer` es el último tiempo de comienzo del contador de colisión,
+- `loadingTime` es el tiempo que debe mantenerse la colisión para la carga,
+- `totalCollisions` es el número de colisiones detectadas (0 o 1).
+
+Los métodos de la clase son:
+
+- `Update` anima la cápsula para que rote.
+- `onTriggerEnter` se activa cuando se detecta colisión. Comienza el contador y la animación de carga.
+- `onTriggerStay` carga la escena correspondiente si el tiempo de colisión supera al tiempo fijado (por defecto 2 segundos)
+- `OnTriggerExit` anula la carga si la colisión no supera el tiempo fijado.
+
+## `bongoScript`
+
+Este script gestiona la detección del tocad o de los bongos.
+
+Tiene un único atributo `audioData` correspondiente al audio a reproducir con la colisión de los bongos.
+
+Tiene un único método relevante, `OnCollisionEnter`, que reproduce el audio si se detecta una colisión con una palma.
 
 # Recursos externos utilizados
 
